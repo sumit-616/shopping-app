@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { CartContext } from "../context/CartContext"; 
 
-const CardItem = ({ product, addToCart }) => {
+const CardItem = ({ product }) => {
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const [isAdded, setIsAdded] = useState(cart.some((item) => item.id === product.id)); 
+
+  const handleCartAction = () => {
+    if (isAdded) {
+      removeFromCart(product.id);
+    } else {
+      addToCart(product);
+    }
+    setIsAdded(!isAdded);
+  };
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.08),_0_-2px_10px_rgba(45,78,255,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12),_0_-4px_15px_rgba(45,78,255,0.2)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
-
-
       <img
         src={product.image}
         alt={product.title}
@@ -20,13 +31,10 @@ const CardItem = ({ product, addToCart }) => {
             ${product.price.toFixed(2)}
           </p>
           <button
-            className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
-          text-[12px] p-1 px-3 uppercase 
-          hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in cursor-pointer"
-            onClick={addToCart}
+            className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer"
+            onClick={handleCartAction}
           >
-            Add to Cart
+            {isAdded ? "Remove Item" : "Add to Cart"}
           </button>
         </div>
       </div>
