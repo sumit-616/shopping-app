@@ -4,10 +4,11 @@ import { FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cart, removeFromCart } = useContext(CartContext); 
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
 
-  const totalItems = cart.length;
-  const totalAmount = cart.reduce((total, item) => total + item.price, 0);
+  const totalItems = cart.reduce((total, item) => total + (Number(item.quantity) || 0), 0);
+  const totalAmount = cart.reduce((total, item) => total + (Number(item.price) * Number(item.quantity) || 0), 0);
+
 
   return (
     <div>
@@ -31,8 +32,23 @@ const Cart = () => {
                     {item.description}
                   </p>
                   <p className="text-green-600 font-semibold mt-2">
-                    ${item.price.toFixed(2)}
+                    ${(item.price * item.quantity).toFixed(2)}
                   </p>
+                  <div className="flex items-center mt-2">
+                    <button
+                      onClick={() => decreaseQuantity(item.id)}
+                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
+                    >
+                      -
+                    </button>
+                    <span className="mx-4">{item.quantity}</span>
+                    <button
+                      onClick={() => increaseQuantity(item.id)}
+                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}

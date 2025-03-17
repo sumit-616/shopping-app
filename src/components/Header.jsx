@@ -29,7 +29,6 @@ const Header = () => {
           </Link>
           <Link to="/cart" className="relative flex items-center">
             <FaShoppingCart className="text-2xl" />
-            {/* Display cart item count if cart is not empty */}
             {cart.length > 0 && (
               <span
                 className="absolute -top-1 -right-2 bg-green-600 text-xs w-5 h-5 flex justify-center items-center animate-bounce rounded-full text-white"

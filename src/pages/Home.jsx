@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/ProductCard';
 import { CartContext } from '../context/CartContext';
+import Spinner from '../components/spinner/spinner';
 
 const Home = () => {
   const { data: products, isLoading, error } = useProducts();
   const { addToCart, removeFromCart } = useContext(CartContext);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner/>
   if (error) return <div>Error: {error.message}</div>;
 
   return (
