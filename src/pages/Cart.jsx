@@ -37,14 +37,14 @@ const Cart = () => {
                   <div className="flex items-center mt-2">
                     <button
                       onClick={() => decreaseQuantity(item.id)}
-                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
+                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300 cursor-pointer"
                     >
                       -
                     </button>
                     <span className="mx-4">{item.quantity}</span>
                     <button
                       onClick={() => increaseQuantity(item.id)}
-                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
+                      className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300 cursor-pointer"
                     >
                       +
                     </button>
