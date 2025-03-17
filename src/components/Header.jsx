@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext";
 const Header = () => {
   const { cart } = useContext(CartContext); 
   return (
-    <header className="bg-[#0d1324] text-white py-4 px-12">
+    <header className="bg-[#0d1324] text-white py-4 px-12 sticky top-0">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo Section */}
         <Link to="/" className="flex items-center gap-2">

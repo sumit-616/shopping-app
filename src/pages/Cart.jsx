@@ -9,7 +9,6 @@ const Cart = () => {
   const totalItems = cart.reduce((total, item) => total + (Number(item.quantity) || 0), 0);
   const totalAmount = cart.reduce((total, item) => total + (Number(item.price) * Number(item.quantity) || 0), 0);
 
-
   return (
     <div>
       {cart.length > 0 ? (
@@ -32,7 +31,7 @@ const Cart = () => {
                     {item.description}
                   </p>
                   <p className="text-green-600 font-semibold mt-2">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ${(Number(item.price) * Number(item.quantity)).toFixed(2)}
                   </p>
                   <div className="flex items-center mt-2">
                     <button
@@ -41,7 +40,7 @@ const Cart = () => {
                     >
                       -
                     </button>
-                    <span className="mx-4">{item.quantity}</span>
+                    <span className="mx-4">{Number(item.quantity) || 0}</span>
                     <button
                       onClick={() => increaseQuantity(item.id)}
                       className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300 cursor-pointer"

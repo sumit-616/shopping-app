@@ -16,7 +16,9 @@ export const CartProvider = ({ children }) => {
     if (existingItem) {
       // If the item already exists, increase its quantity
       const updatedCart = cart.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === product.id
+          ? { ...item, quantity: Number(item.quantity) + 1 }
+          : item
       );
       setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -39,7 +41,9 @@ export const CartProvider = ({ children }) => {
 
   const increaseQuantity = (productId) => {
     const updatedCart = cart.map((item) =>
-      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === productId
+        ? { ...item, quantity: Number(item.quantity) + 1 }
+        : item
     );
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -48,8 +52,8 @@ export const CartProvider = ({ children }) => {
 
   const decreaseQuantity = (productId) => {
     const updatedCart = cart.map((item) =>
-      item.id === productId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
+      item.id === productId && Number(item.quantity) > 1
+        ? { ...item, quantity: Number(item.quantity) - 1 }
         : item
     );
     setCart(updatedCart);

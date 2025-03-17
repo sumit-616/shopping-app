@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/ProductCard';
 import { CartContext } from '../context/CartContext';
-import Spinner from '../components/spinner/spinner';
+import Spinner from '../components/spinner/spinner.jsx';
 
 const Home = () => {
   const { data: products, isLoading, error } = useProducts();
